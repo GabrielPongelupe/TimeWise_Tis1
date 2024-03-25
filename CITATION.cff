@@ -1,0 +1,31 @@
+cff-version: 1.0.1
+message: Please cite this software using these metadata.
+title: Um aplicativo para gestão de tempo (TimeWise)
+authors:
+  - family-names: Pongelupe de Carvalho
+    given-names: Gabriel
+  - family-names: Freitas Campos Picinin 
+    given-names: Felipe
+  - family-names: Chagas Ribeiro
+    given-names: Gustavo
+  - family-names: Cazzoletti
+    given-names: Renato
+  - family-names: Neri Moreira
+    given-names: João Vitor
+  - family-names: Barrel Alves Dutra
+    given-names: João
+  - name-suffix: Professor
+    affiliation: PUC Minas
+    family-names: Dias Ferreira da Rocha
+    given-names: Roberto Felipe
+  - name-suffix: Professor
+    affiliation: PUC Minas
+    family-names: Alves Nogueira
+    given-names: Simone
+keywords:
+  - Tempo
+  - Rotina de Estudos
+repository-code: https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2023-1-ti1-0385200-timewise/tree/master
+license: CC-BY-4.0
+version: 1.0.0
+date-released: 2023-07-04

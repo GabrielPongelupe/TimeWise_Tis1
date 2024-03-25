@@ -1,0 +1,431 @@
+   <style>
+      /* Minimalistic style for Save and Edit buttons */
+      .edit-button,
+      .save-button {
+        padding: 6px 10px;
+        border: none;
+        background: none;
+        color: #888;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: bold;
+        transition: color 0.3s;
+      }
+
+      .edit-button:hover,
+      .save-button:hover {
+        color: #555;
+      }
+
+      /* Fix buttons on the table */
+      .checklist-item .button-container {
+        white-space: nowrap;
+      }
+
+      .checklist-item .button-container button {
+        margin-right: 5px;
+      }
+
+      /* Progress bar styles */
+      .progress-bar {
+        width: 100%;
+        height: 10px;
+        background-color: #eee;
+        border-radius: 5px;
+        overflow: hidden;
+        margin: 5px 0;
+      }
+
+      .progress {
+        height: 100%;
+        background-color: #63c965;
+        width: 0;
+        transition: width 0.3s;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      /* Reset default margin and padding */
+      body,
+      h1,
+      h2,
+      p,
+      ul,
+      li,
+      table,
+      th,
+      td {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .checklist-item .title-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .checklist-item .title-content-editable {
+        background-color: #ddeb1f6b;
+      }
+      .checklist-item .button-container-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .checklist-item .title {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      /* Color variables */
+      :root {
+        --primary-color: #2ecc71;
+        --secondary-color: #3498db;
+        --success-color: #27ae60;
+        --danger-color: #e74c3c;
+        --dark-gray: #333;
+        --light-gray: #f2f2f2;
+      }
+
+      /* Font */
+      body {
+        font-family: "Arial", sans-serif;
+      }
+
+      /* Style for the tab container */
+      .tab-container {
+        max-width: 95%;
+        min-width: 800px;
+        margin: 0 auto;
+        background-color: var(--light-gray);
+        border-radius: 5px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Style for the tab buttons */
+      .tab-button-container {
+        display: flex;
+      }
+
+      .tab-button {
+        flex: 1;
+        background-color: var(--primary-color);
+        color: #fff;
+        text-align: center;
+        padding: 15px 0;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .tab-button:hover {
+        background-color: #27ae60;
+      }
+
+      .tab-button.active {
+        background-color: #fff;
+        color: var(--primary-color);
+        border-bottom: 2px solid var(--primary-color);
+      }
+
+      /* Style for the tab content */
+      .tab-content {
+        display: none;
+        padding: 20px;
+        background-color: #fff;
+      }
+
+      .tab-content.active {
+        display: block;
+      }
+
+      /* Style for the table */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid var(--light-gray);
+      }
+
+      /* Style for table headers */
+      th {
+        background-color: var(--light-gray);
+        padding: 10px;
+        border-bottom: 1px solid var(--light-gray);
+        color: var(--dark-gray);
+        font-weight: bold;
+      }
+
+      /* Style for table cells */
+      td {
+        padding: 10px;
+        border-bottom: 1px solid var(--light-gray);
+      }
+
+      /* Style for title */
+      .title {
+        color: var(--primary-color);
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+
+      .checklist-item .edit-button,
+      .checklist-item .save-button {
+        margin-right: 5px;
+      }
+
+      .checklist-item.editing .title,
+      .checklist-item.editing .description,
+      .checklist-item.editing .time,
+      .checklist-item.editing .quantity {
+        border: 1px solid var(--dark-gray);
+        padding: 5px;
+      }
+
+      /* Style for the completed checklist items */
+      .checklist-item.completed .title {
+        text-decoration: line-through;
+        color: var(--secondary-color);
+      }
+
+      /* Style for the checkbox */
+      .checklist-item input[type="checkbox"] {
+        display: none;
+      }
+
+      .checklist-item .checkbox-custom {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background-color: #fff;
+        border: 1px solid var(--dark-gray);
+        border-radius: 3px;
+        position: relative;
+        top: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s, border-color 0.3s;
+      }
+
+      .checklist-item .checkbox-custom:before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 12px;
+        height: 12px;
+        background-color: var(--success-color);
+        border-radius: 2px;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      .checklist-item .quantity {
+        position: relative;
+      }
+
+      .checklist-item .quantity-controls {
+        display: flex;
+        align-items: center;
+      }
+
+      .checklist-item .quantity-controls button {
+        padding: 0;
+        width: 30px;
+        height: 30px;
+        border: none;
+        background-color: #e0e0e0;
+        color: #888;
+        cursor: pointer;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      .checklist-item .quantity-controls button i {
+        font-size: 12px;
+      }
+
+      .checklist-item input[type="checkbox"]:checked + .checkbox-custom:before {
+        opacity: 1;
+      }
+
+      /* Style for the add checklist item button */
+      .add-item-button {
+        background-color: var(--primary-color);
+        color: #fff;
+        border: none;
+        padding: 10px 15px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .quantity-controls button:hover {
+        background-color: #63c965;
+        color: #fff;
+      }
+
+      .add-item-button:hover {
+        background-color: #27ae60;
+      }
+
+      /* Style for form inputs */
+      .form-input {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid var(--light-gray);
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+      }
+
+      /* Style for form submit button */
+      .form-submit {
+        background-color: var(--primary-color);
+        color: #fff;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .form-submit:hover {
+        background-color: #27ae60;
+      }
+
+      /* Style for error message */
+      .error-message {
+        color: var(--danger-color);
+        font-size: 14px;
+        margin-top: 5px;
+      }
+
+      /* Media query for responsive layout */
+      @media (max-width: 768px) {
+        .tab-button-container {
+          flex-direction: column;
+        }
+
+        .tab-button {
+          padding: 10px 0;
+        }
+
+        .tab-content {
+          padding: 10px;
+        }
+
+        .add-item-button {
+          width: 100%;
+        }
+
+        .edit-button,
+        .save-button {
+          padding: 6px 10px;
+          border: none;
+          background: none;
+          color: #888;
+
+          cursor: pointer;
+          font-size: 14px;
+          font-weight: bold;
+          transition: color 0.3s;
+        }
+
+        .edit-button:hover,
+        .save-button:hover {
+          color: #555;
+        }
+
+        /* Fix buttons on the table */
+        .checklist-item .button-container {
+          white-space: nowrap;
+        }
+
+        .checklist-item .button-container button {
+          margin-right: 5px;
+        }
+      }
+
+      .checklist-item .delete-button {
+        padding: 6px 10px;
+        border: none;
+        background: none;
+        color: #888;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: bold;
+        transition: color 0.3s;
+      }
+
+      .checklist-item-priority {
+        background: rgba(247, 178, 178, 0.801);
+      }
+
+      .checklist-item-priority .title {
+        color: var(--danger-color);
+      }
+
+      .checklist-item-priority .button-container button {
+        color: var(--danger-color);
+      }
+
+      .checklist-item-priority .checkbox-priority:before {
+        background: var(--danger-color);
+      }
+
+      .checklist-item-complete {
+        background: hsla(145, 62%, 49%, 0.295);
+      }
+
+      .checklist-item-complete .title {
+        color: #27ae60;
+      }
+
+      .checklist-item-complete .button-container button {
+        color: var(--primary-color);
+      }
+
+      .checklist-item-complete .checkbox-complete:before {
+        background: var(--primary-color);
+      }
+
+      .checklist-item .delete-button:hover {
+        color: #555;
+      }
+
+      .checklist-item-editable {
+        background-color: #ddeb1f6b;
+      }
+
+      .chart-title {
+        margin-top: 40px;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+
+      .tab-tables-group > div > hr {
+        margin-top: 20px;
+      }
+
+      .title-content-collapsed {
+        height: 65px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+      .title-content-collapsed .title-content > button {
+        transform: rotate(180deg);
+      }
+
+      .title-content > button {
+        border: none;
+        background: none;
+      }
+    </style>

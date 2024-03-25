@@ -1,0 +1,129 @@
+body {
+    background-color: white;
+}
+
+label {
+    font-size: 30px;
+    padding-right: 20px;
+    color: white;
+}
+
+input {
+    font-size: 20px;
+}
+
+button {
+    font-size: 20px;
+    background-color: rgb(54, 236, 54);
+    border-radius: 10%;
+    padding: 10px 20px;
+}
+
+.timer {
+    font-size: 200px;
+    text-align: center;
+    color: black;
+}
+
+.input-container {
+    margin: 20px;
+}
+
+.align-inputs {
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    text-align: center;
+}
+
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+*{ 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('pexels-francesco-ungaro-281260.jpg') no-repeat;
+    background-size: cover ;
+    background-position: center;
+
+
+
+}
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    display: flex;
+    justify-content: space-between ;
+    z-index: 99;
+    align-items: center;
+}
+
+.logo{
+    font-size: 2em;
+    color: #fff;
+    user-select: none;
+}
+.navigation a {
+    position: relative;
+    font-size:1.1em;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+}
+.navigation a::after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: -6px;
+    height: 3px;
+    background: #fff;
+    border-radius: 5px;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .5s;
+}
+.navigation a:hover::after{
+    transform-origin: left;
+    transform:scaleX(1) ;
+
+}
+
+.navigation .btnlogin-popup{
+    width: 130px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid #fff;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: #fff;
+    font-weight: 500;
+    margin-left: 40px;
+    transition: .5s;
+
+
+}
+.navigation .btnlogin-popup:hover{
+    background: #fff;
+    color: #162939;
+}

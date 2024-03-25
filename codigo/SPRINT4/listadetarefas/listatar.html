@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="styles/listatar.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      .tab-container {
+        margin-top: 30px; /* Adjust the margin value as needed */
+      }
+    </style>
+  </head>
+  
+  <header>
+    <h2 class="logo">TimeWise</h2>
+    <nav class="navigation">
+        <a href="../index.html">menu</a>
+        <a href="../agenda/index.html">calendário</a>
+        <a href="../perfil.html">meu perfil</a>
+        <a href="#">lista de tarefas</a>
+        <a href="../timer/index.html">Timer</a>
+        <button class="btnlogin-popup">Login</button>
+    </nav>
+</header>
+
+  <body>
+    
+    <div class="tab-container">
+      <div class="tab-button-container">
+        <div class="tab-button active" onclick="openTab(event, 'Tab1')">
+          Lista de Tarefas
+        </div>
+        <div class="tab-button" onclick="openTab(event, 'Tab2')">
+          Gráfico de Progresso
+        </div>
+      </div>
+
+      <div id="Tab1" class="tab-content active">
+        <button class="add-item-button" onclick="addTable()">
+          Criar Tabela
+        </button>
+
+        <div class="tab-tables-group">
+          <div class="title-content">
+            <button onclick="collapseTitle('id0')">⬆️</button>
+            <h2 class="title">Criar de Tarefas</h2>
+            <div class="button-container-title">
+              <button class="save-button">Salvar</button>
+              <button class="edit-button">Editar</button>
+            </div>
+          </div>
+
+          <div class="tab-content-tables">
+            <table id="id0">
+              <thead>
+                <tr>
+                  <th>Titulo</th>
+                  <th>Descrição</th>
+                  <th>Hora</th>
+                  <th>Quantidade</th>
+                  <th>Progresso</th>
+                  <th>Completo</th>
+                  <th>Prioritário</th>
+                </tr>
+              <tbody></tbody>
+            </table>
+          </div>
+
+          <button class="add-item-button" onclick="addItem('id0')">
+            Criar Tarefa
+          </button>
+        </div>
+      </div>
+
+      <div id="Tab2" class="tab-content">
+        <h2 class="title">Gráfico de Progresso</h2>
+        <div id="chart-container"></div>
+      </div>
+    </div>
+    <script src="scripts/listatar.js"></script>
+  </body>
+</html>
